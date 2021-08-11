@@ -16,7 +16,6 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import navStyles from "./Navbar.module.css";
 const Links = [
   {
@@ -42,10 +41,7 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
     px={2}
     py={1}
     rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
+   
   >
     <a href={path}>{children}</a>
   </Box>
@@ -56,8 +52,8 @@ export default function Navbar() {
 
   return (
     <div className={navStyles.mobileNav}>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+      <Box  bg={useColorModeValue('brand.300','brand.300')} px={4}>
+        <Flex colorScheme={"teal"} h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -78,7 +74,6 @@ export default function Navbar() {
                 </NavLink>
               ))}
             </HStack>
-            <ColorModeSwitcher />
           </HStack>
           <Flex alignItems={"center"}>
             <Button
@@ -104,11 +99,11 @@ export default function Navbar() {
                   }
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+              <MenuList bg={useColorModeValue('brand.300','brand.300')}>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>Setings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Logout</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
