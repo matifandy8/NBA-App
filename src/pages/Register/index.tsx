@@ -1,116 +1,70 @@
-import { useState } from "react";
+import { Box, ButtonGroup, Radio,Text,Stack } from "@chakra-ui/react";
+import { Formik } from "formik";
 import {
-  Flex,
-  Heading,
-  Input,
-  Button,
-  InputGroup,
-  Stack,
-  InputLeftElement,
-  chakra,
-  Box,
-  Text,
-  Link,
-  Avatar,
-  FormControl,
-  FormHelperText,
-  InputRightElement
-} from "@chakra-ui/react";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-
-const CFaUserAlt = chakra(FaUserAlt);
-const CFaLock = chakra(FaLock);
+  InputControl,
+  PercentComplete,
+  ResetButton,
+  SubmitButton,
+} from "formik-chakra-ui";
+import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleShowClick = () => setShowPassword(!showPassword);
+
+let history = useHistory();
+
+const onSubmit = (values: any) => {
+  console.log(values);
+  window.alert(JSON.stringify(values, null, 2));
+  history.push("/login");
+
+};
+
+const initialValues = {
+  firstName: "",
+  email: "",
+  password: "",
+};
+const validationSchema = Yup.object({
+  firstName: Yup.string().required(),
+  email: Yup.string().required(),
+  password: Yup.string().required(),
+});
 
   return (
-    <Flex
-      flexDirection="column"
-      width="100wh"
-      height="100vh"
-      backgroundColor="gray.200"
-      justifyContent="center"
-      alignItems="center"
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
     >
-      <Stack
-        flexDir="column"
-        mb="2"
-        justifyContent="center"
-        alignItems="center"
-      >
-        
-        <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
-            <Stack
+      {({ handleSubmit, values, errors }) => (
+        <Box
+        minW={{ base: "90%", md: "468px" }}
+          p={6}
+          m="10px auto"
+          as="form"
+          onSubmit={handleSubmit as any}
+        >
+           <Stack
               spacing={4}
               p="1rem"
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >
-                            <Text fontSize="4xl">Register</Text>
-
-                <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                  />
-                  <Input type="text" placeholder="Name" />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                  />
-                  <Input type="email" placeholder="Email" />
-                </InputGroup>
-              </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<CFaLock color="gray.300" />}
-                  />
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link>Forgot password?</Link>
-                </FormHelperText>
-              </FormControl>
-              <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="brand.200"
-                width="full"
-              >
-                Register
-              </Button>
-            </Stack>
-          </form>
+          <Text fontSize="4xl">Register</Text>
+          <InputControl name="firstName" label="First Name" />
+          <InputControl name="email" label="Email" />
+          <InputControl name="password" label="Password" />
+          <ButtonGroup>
+            <SubmitButton>Submit</SubmitButton>
+            <ResetButton>Reset</ResetButton>
+          </ButtonGroup>
+          </Stack>
         </Box>
-      </Stack>
-      <Box>
-        Already have an account?{" "}
-        <Link color="brand.200" href="/login">
-          Sign in
-        </Link>
-      </Box>
-    </Flex>
+      )}
+    </Formik>
   );
 };
 
 export default Register;
+
