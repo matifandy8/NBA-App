@@ -12,9 +12,9 @@ import {
 import BlogAuthor from "./BlogAuthor";
 import CardNews from "./CardNews";
 
-const News = () => {
+const News: React.FC = () => {
   return (
-    <Container maxW={"7xl"} p="12">
+    <Container maxW={"5xl"} p="12">
       <Box
         marginTop={{ base: "1", sm: "5" }}
         display="flex"
@@ -83,7 +83,7 @@ const News = () => {
         Latest News
       </Heading>
       <Divider marginTop="5" />
-      <Wrap spacing="30px" marginTop="5">
+      <Wrap spacing="20px" marginTop="5">
         <CardNews />
         <CardNews />
         <CardNews />

@@ -10,9 +10,7 @@ const Home: React.FC = () => {
 // console.log(data)
   return (
     <div className="Home">
-      <Navbar />
       <News />
-      <Footer />
     </div>
   );
 }

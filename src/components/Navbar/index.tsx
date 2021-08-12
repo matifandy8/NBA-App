@@ -56,6 +56,7 @@ const Navbar: React.FC = () => {
  px={4}>
         <Flex colorScheme={"teal"} h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
+            bg={useColorModeValue('brand.300','brand.300')}
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
