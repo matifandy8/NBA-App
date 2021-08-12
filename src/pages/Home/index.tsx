@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
-import { Get } from '../../services/Api';
+import News from '../../components/News';
+// import { Get } from '../../services/A
+const Home: React.FC = () => {
+  // const [data, setData] = useState([])
 
-function Home() {
-  const [data, setData] = useState([])
-
-  useEffect( () => {
-      Get('/teams').then((res) => setData(res.data.data))  
+//   useEffect( () => {
+//       Get('/teams').then((res) => setData(res.data.data))  
       
-}, [])
-console.log(data)
+// }, [])
+// console.log(data)
   return (
     <div className="Home">
       <Navbar />
-      <h1>Home</h1>
+      <News />
     </div>
   );
 }

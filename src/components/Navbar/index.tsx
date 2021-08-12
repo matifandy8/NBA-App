@@ -47,12 +47,13 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
   </Box>
 );
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div className={navStyles.mobileNav}>
-      <Box  bg={useColorModeValue('brand.300','brand.300')} px={4}>
+      <Box  bg={useColorModeValue('brand.300','brand.300')} zIndex={99}
+ px={4}>
         <Flex colorScheme={"teal"} h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -124,3 +125,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;

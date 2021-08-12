@@ -7,7 +7,7 @@ import Register from "../pages/Register";
 
 
 
-export const Public = () => {
+export const Public: React.FC = () => {
     return(
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>

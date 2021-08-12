@@ -1,15 +1,14 @@
-import { Box, ButtonGroup, Radio,Text,Stack } from "@chakra-ui/react";
+import { Box, ButtonGroup,Text,Stack } from "@chakra-ui/react";
 import { Formik } from "formik";
 import {
   InputControl,
-  PercentComplete,
   ResetButton,
   SubmitButton,
 } from "formik-chakra-ui";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 
-const Register = () => {
+const Register: React.FC = () => {
 
 let history = useHistory();
 
