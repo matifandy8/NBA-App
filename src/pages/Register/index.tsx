@@ -7,7 +7,7 @@ import {
 } from "formik-chakra-ui";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { postRegister } from "../../services/User";
 
 const Register: React.FC = () => {
 
@@ -15,18 +15,9 @@ let history = useHistory();
 
 const onSubmit  = async (values: any) => {
   console.log(values);
-  window.alert(JSON.stringify(values, null, 2));
   history.push("/login");
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  await axios.post(
-    'http://localhost:8000/users/register',
-    values,
-    config
-  );
+  const resp = await postRegister(values)
+  console.log(resp.data)
 
 };
 
