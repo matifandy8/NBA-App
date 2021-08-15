@@ -7,16 +7,30 @@ import {
 } from "formik-chakra-ui";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+
 
 const Login: React.FC = () => {
 
 let history = useHistory();
 
-const onSubmit = (values: any) => {
+const onSubmit = async (values: any) => {
   console.log(values);
   window.alert(JSON.stringify(values, null, 2));
   history.push("/");
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const { data } = await axios.post(
+    'http://localhost:8000/users/login',
+    values,
+    config
+  );
 
+  localStorage.setItem('userInfo', JSON.stringify(data));
+  // let token = data.token;
 };
 
 const initialValues = {

@@ -7,25 +7,36 @@ import {
 } from "formik-chakra-ui";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Register: React.FC = () => {
 
 let history = useHistory();
 
-const onSubmit = (values: any) => {
+const onSubmit  = async (values: any) => {
   console.log(values);
   window.alert(JSON.stringify(values, null, 2));
   history.push("/login");
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  await axios.post(
+    'http://localhost:8000/users/register',
+    values,
+    config
+  );
 
 };
 
 const initialValues = {
-  firstName: "",
+  name: "",
   email: "",
   password: "",
 };
 const validationSchema = Yup.object({
-  firstName: Yup.string().required(),
+  name: Yup.string().required(),
   email: Yup.string().required(),
   password: Yup.string().required(),
 });
@@ -51,7 +62,7 @@ const validationSchema = Yup.object({
               boxShadow="md"
             >
           <Text fontSize="4xl">Register</Text>
-          <InputControl name="firstName" label="First Name" />
+          <InputControl name="name" label="Name" />
           <InputControl name="email" label="Email" />
           <InputControl name="password" label="Password" />
           <ButtonGroup>

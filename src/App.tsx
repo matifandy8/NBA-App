@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Public } from './router/Public';
 import {
@@ -7,6 +7,10 @@ import {
 
 
 function App() {
+
+  useEffect(() => {
+      console.log("token",localStorage.getItem('userInfo'))
+  }, [])
 
   return (
     <Router>
