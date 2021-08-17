@@ -6,7 +6,7 @@ import {
   SubmitButton,
 } from "formik-chakra-ui";
 import * as Yup from "yup";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postLogin } from "../../services/User";
 
 
@@ -19,8 +19,8 @@ const onSubmit = async (values: any) => {
   window.alert(JSON.stringify(values, null, 2));
   history.push("/");
   const resp = await postLogin(values)
-  console.log(resp.data)
-  // localStorage.setItem('userInfo', JSON.stringify(data));
+  console.log(resp)
+  localStorage.setItem('userInfo', JSON.stringify(resp.data));
   // let token = data.token;
 };
 
@@ -59,6 +59,7 @@ const validationSchema = Yup.object({
           <ButtonGroup>
             <SubmitButton>Submit</SubmitButton>
             <ResetButton>Reset</ResetButton>
+            <Text>Don`t have a account?<Link to="/register"> Create</Link></Text>
           </ButtonGroup>
           </Stack>
         </Box>

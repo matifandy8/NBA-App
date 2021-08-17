@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import navStyles from "./Navbar.module.css";
+import { Link, useHistory } from "react-router-dom";
 const Links = [
   {
     name: "Home",
@@ -36,6 +37,8 @@ const Links = [
   },
 ];
 
+
+
 const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
   <Box
     px={2}
@@ -48,7 +51,14 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
 );
 
 const Navbar: React.FC = () => {
+  let history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const logout = (e: any) => {
+    e.preventDefault();
+    localStorage.clear();
+    history.push("/login");
+  };
 
   return (
     <div className={navStyles.mobileNav}>
@@ -78,15 +88,22 @@ const Navbar: React.FC = () => {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
+            
+            {localStorage.getItem("userInfo") === null ? (
+      <Link to="/login">
+          <Button
+             variant={"solid"}
+             colorScheme={"teal"}
+             size={"sm"}
+             mr={4}
+            //  leftIcon={<AddIcon />}
+           >
+             Sign in
+           </Button>
+        </Link>
+
+            ) : (
+
             <Menu>
               <MenuButton
                 as={Button}
@@ -96,18 +113,19 @@ const Navbar: React.FC = () => {
               >
                 <Avatar
                   size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
+                  // src={
+                  //   "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                  // }
                 />
               </MenuButton>
-              <MenuList bg={useColorModeValue('brand.300','brand.300')}>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Setings</MenuItem>
+              <MenuList bg={'brand.300'} >
+                <MenuItem _hover={{ bg: "teal.900" }}>Profile</MenuItem>
+                <MenuItem _hover={{ bg: "teal.900" }}>Setings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Logout</MenuItem>
+                <Button _hover={{ bg: "teal.900" }} onClick={(e) => logout(e)}>Logout</Button>
               </MenuList>
             </Menu>
+            )}
           </Flex>
         </Flex>
 
