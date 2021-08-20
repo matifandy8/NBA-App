@@ -8,12 +8,13 @@ import {
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import { postRegister } from "../../services/User";
+import { registerValues } from "../../interfaces";
 
 const Register: React.FC = () => {
 
 let history = useHistory();
 
-const onSubmit  = async (values: any) => {
+const onSubmit  = async (values: registerValues) => {
   console.log(values);
   history.push("/login");
   const resp = await postRegister(values)
@@ -21,7 +22,7 @@ const onSubmit  = async (values: any) => {
 
 };
 
-const initialValues = {
+const initialValues: registerValues = {
   name: "",
   email: "",
   password: "",

@@ -8,13 +8,14 @@ import {
 import * as Yup from "yup";
 import { Link, useHistory } from "react-router-dom";
 import { postLogin } from "../../services/User";
+import { FormValues } from "../../interfaces";
 
 
 const Login: React.FC = () => {
 
 let history = useHistory();
 
-const onSubmit = async (values: any) => {
+const onSubmit = async (values: FormValues) => {
   console.log(values);
   window.alert(JSON.stringify(values, null, 2));
   history.push("/");
@@ -24,7 +25,7 @@ const onSubmit = async (values: any) => {
   // let token = data.token;
 };
 
-const initialValues = {
+const initialValues: FormValues = {
   email: "",
   password: "",
 };

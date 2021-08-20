@@ -8,7 +8,7 @@ const axiosIntance = axios.create({
 })
 
 
-export const Post = async(path:any, data:any) => {
+export const Post = async(path:string, data:any) => {
     try {
         const resp = await axiosIntance.post(path,data);
         return resp;

@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
   let history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const logout = (e: any) => {
+  const logout = (e: React.SyntheticEvent) => {
     e.preventDefault();
     localStorage.clear();
     history.push("/login");
