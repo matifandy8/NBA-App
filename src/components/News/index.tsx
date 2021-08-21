@@ -9,6 +9,7 @@ import {
   useColorModeValue,
   Container,
 } from "@chakra-ui/react";
+import { LazyImage } from "../../utils/LazyImage";
 import BlogAuthor from "./BlogAuthor";
 import CardNews from "./CardNews";
 
@@ -34,14 +35,7 @@ const News: React.FC = () => {
             marginTop="5%"
           >
             <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-              <Image
-                borderRadius="lg"
-                src={
-                  "http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_858,w_1526,x_360,y_74/c_fill,f_auto,h_495,q_auto,w_880/v1/m/0/5/05c96f11c74c5030f39fcb8565fd71f2d354862f/jr-smith-trying-join-golf-team-north-carolina-t.jpg"
-                }
-                alt="some good alt text"
-                objectFit="contain"
-              />
+            <LazyImage src="http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_858,w_1526,x_360,y_74/c_fill,f_auto,h_495,q_auto,w_880/v1/m/0/5/05c96f11c74c5030f39fcb8565fd71f2d354862f/jr-smith-trying-join-golf-team-north-carolina-t.jpg" alt="title"/> 
             </Link>
           </Box>
         </Box>

@@ -8,6 +8,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import BlogAuthor from "./BlogAuthor";
+import { LazyImage } from "../../utils/LazyImage";
 
 const CardNews: React.FC = () => {
   return (
@@ -15,19 +16,7 @@ const CardNews: React.FC = () => {
       <Box w="100%">
         <Box borderRadius="lg" overflow="hidden">
           <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-            <Image
-              transform="scale(1.0)"
-              src={
-                "http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_683,w_1711,x_58,y_105/c_fill,f_auto,h_320,q_auto,w_800/v1/m/4/f/4f57d19040449866d23d924f1145ac8bf6399121/kuzma-playing-lebron-reshaped-my-thinking.jpg"
-              }
-              alt="some text"
-              objectFit="contain"
-              width="100%"
-              transition="0.3s ease-in-out"
-              _hover={{
-                transform: "scale(1.05)",
-              }}
-            />
+          <LazyImage src="http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_683,w_1711,x_58,y_105/c_fill,f_auto,h_320,q_auto,w_800/v1/m/4/f/4f57d19040449866d23d924f1145ac8bf6399121/kuzma-playing-lebron-reshaped-my-thinking.jpg" alt="title"/> 
           </Link>
         </Box>
 
