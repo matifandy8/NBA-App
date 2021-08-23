@@ -15,7 +15,7 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon} from "@chakra-ui/icons";
 import navStyles from "./Navbar.module.css";
 import { Link, useHistory } from "react-router-dom";
 const Links = [
